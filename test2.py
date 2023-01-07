@@ -72,7 +72,7 @@ data = [
 #collection.insert_many(data)
 
 
-# we can convert a table into a dictionary and then dump into nosql also
+# we can convert a table into a dictionary(json) and then dump into nosql also
 
 
 '''record = collection.find()
@@ -96,13 +96,13 @@ for i in record:
 
 
 '''print("\n")
-record = collection.find({'qty':80})
+record = collection.find({'qty':80})                               # matching a record to fetch it
 for i in record:
     print(i)'''
 
 
 '''print("\n")
-record = collection.find({'status':{'$in':['A','P']}})            # filter data where status is in A or P
+record = collection.find({'status':{'$in':['A','P']}})            # filter data where status is either A or P
 for i in record:
     print(i)'''
 
@@ -114,17 +114,52 @@ for i in record:
     print(i)'''
 
 
-print("\n")
-record = collection.find({'qty':{'$gte' :75}})
+'''print("\n")
+record = collection.find({'qty':{'$gte' :75}})                     # qty is greater than or equal o 75
 for i in record:
-    print(i)
+    print(i)'''
 
 
 
-print("\n")
+'''print("\n")
 record = collection.find({'item': 'sketch pad','qty': 95})
 for i in record:
+    print(i)'''
+
+
+
+'''print("\n")
+record = collection.find({ 'item': 'sketch pad' , 'qty' :{"$gte" : 75}})
+for i in record:
+    print(i)'''
+
+
+
+
+'''print("\n")
+record = collection.find({'$or' : [{ 'item': 'sketch pad'} , {'qty': {"$gte": 75}}]})             # either item = sketchpad or qty >= 75
+for i in record:
+    print(i)'''
+
+
+
+
+
+# update records - update_one  &  update_many
+collection.update_one({'item': 'canvas'} , {'$set':{'item': 'sudhanshu'} })
+d = collection.find({'item':'sudhanshu'})
+for i in d :
     print(i)
+
+
+
+# deleting a record
+collection.delete_one({'item': 'sudhanshu'})
+d = collection.find({'item':'sudhanshu'})
+for i in d :
+    print(i)
+
+
 
 
 
