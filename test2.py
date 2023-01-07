@@ -70,3 +70,64 @@ data = [
     ]
 
 #collection.insert_many(data)
+
+
+# we can convert a table into a dictionary and then dump into nosql also
+
+
+'''record = collection.find()
+for i in record:
+    print(i)'''
+
+
+
+'''print("\n")
+record = collection.find({'item':'mat'})
+for i in record:
+    print(i)'''
+
+
+
+'''print("\n")
+record = collection.find({'status':'A'})
+for i in record:
+    print(i)'''
+
+
+
+'''print("\n")
+record = collection.find({'qty':80})
+for i in record:
+    print(i)'''
+
+
+'''print("\n")
+record = collection.find({'status':{'$in':['A','P']}})            # filter data where status is in A or P
+for i in record:
+    print(i)'''
+
+
+
+'''print("\n")
+record = collection.find({'status':{'$gt':'C'}})                  # filter data where status is greater than C
+for i in record:
+    print(i)'''
+
+
+print("\n")
+record = collection.find({'qty':{'$gte' :75}})
+for i in record:
+    print(i)
+
+
+
+print("\n")
+record = collection.find({'item': 'sketch pad','qty': 95})
+for i in record:
+    print(i)
+
+
+
+
+
+
